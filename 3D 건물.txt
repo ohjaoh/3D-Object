@@ -1,0 +1,11 @@
+1번 건물 Dimensions(치수) x50 y275 z120
+2번 건물 Dimensions(치수) x50 y300 z120
+3번 건물 Dimensions(치수) x50 y200 z120
+4번 건물 Dimensions(치수) x50 y275 z90
+5번 건물 Dimensions(치수) x50 y220 z150
+6번 건물 Dimensions(치수) x50 y175 z150
+7번 건물 Dimensions(치수) x120 y200 z150
+8번 건물 Dimensions(치수) x200 y100 z180
+9번 건물 Dimensions(치수) x100 y125 z130 (원기둥)
+
+5번 6번 사이 연결하는 부분은 그 사이에 있는 테이블 놓는 부분들 고려해서 만들것

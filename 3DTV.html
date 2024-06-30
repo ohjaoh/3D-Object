@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>3D TV Model with Video</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #video-source { display: none; }
+    </style>
+</head>
+<body>
+    <video id="video-source" crossorigin="anonymous" loop muted>
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+    </video>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        let scene, camera, renderer, tv, videoTexture;
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x808080);
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+
+            createTV();
+
+            camera.position.set(0, 0, 7);
+
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.25;
+
+            animate();
+        }
+
+        function createTV() {
+            const frameGeometry = new THREE.BoxGeometry(4, 3, 0.2);
+            const frameMaterial = new THREE.MeshPhongMaterial({ color: 0x000000 });
+            tv = new THREE.Mesh(frameGeometry, frameMaterial);
+
+            const video = document.getElementById('video-source');
+            videoTexture = new THREE.VideoTexture(video);
+            
+            const screenGeometry = new THREE.PlaneGeometry(3.8, 2.8);
+            const screenMaterial = new THREE.MeshBasicMaterial({ map: videoTexture });
+            const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+            screen.position.z = 0.11;
+
+            tv.add(screen);
+            scene.add(tv);
+
+            video.play();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        init();
+    </script>
+</body>
+</html>
