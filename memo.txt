@@ -16,3 +16,4 @@ for obj in bpy.context.selected_objects:
   6. Ctrl + L 메뉴가운데 Link 머티리얼 하면 한번에 적용된다.
 
 임시저장 20240710
+ 학교 임시저장 20240710
