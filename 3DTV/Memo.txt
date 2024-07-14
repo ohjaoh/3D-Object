@@ -1,0 +1,17 @@
+1번. 영상실행가능
+2번. 유튜브 영상 가져오기 가능
+3번. 영상에 마우스 이벤트 삭제 -> 마우스로 유튜브영상과 동일하게 상호작용하던것 막음
+4.번 리엑트 컴포넌트형태로 변환
+4번 사용시 아래코드 필요
+import React from 'react';
+import ThreeDTv from './ThreeDTv';
+
+function App() {
+  return (
+    <div>
+      <ThreeDTv />
+    </div>
+  );
+}
+
+export default App;
