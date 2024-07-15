@@ -10,4 +10,16 @@
 저작권: Editorial No Ai License
 설명: 이 모델은 주로 뉴스, 리뷰, 교육 및 연구와 같은 에디토리얼 용도로만 사용할 수 있습니다. 상업적 사용은 제한됩니다.
 
+주사기
+사이트 주소: https://www.cgtrader.com/free-3d-models/science/medical/syringe-needle-1d008b54-1437-4adb-9327-d9d6730c6d22
+이름: Syringe Needle
+저작권: Royalty Free No Ai License
+설명: 이 모델은 비상업적 및 상업적 용도로 자유롭게 사용할 수 있습니다. 단, 인공지능 학습 및 AI 모델 생성에 사용해서는 안 됩니다.
+
+구급상자(내일 다운받을것)
+사이트 주소: https://www.cgtrader.com/items/2007123/download-page
+이름: First Aid Kit
+저작권: Royalty Free No Ai License
+설명: 이 모델은 비상업적 및 상업적 용도로 자유롭게 사용할 수 있습니다. 단, 인공지능 학습 및 AI 모델 생성에 사용해서는 안 됩니다.
+
 3DTV는 일단 오브젝트 없이 나중에 프로젝트에서 생성하고 배치할 계획
