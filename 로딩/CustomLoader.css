@@ -1,0 +1,41 @@
+/* CustomLoader.css */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* background: linear-gradient(135deg, rgba(67, 127, 240, 1) 0%, rgba(129, 236, 236, 1) 100%); */
+    color: white;
+  }
+  
+  .spinner {
+    width: 100px;
+    height: 100px;
+    border: 10px solid transparent;
+    border-top: 10px solid #ff69b4; /* 핫핑크 */
+    border-right: 10px solid #ff1493; /* 딥핑크 */
+    border-radius: 50%;
+    animation: spin 1s linear infinite, pulse 1.5s ease-in-out infinite;
+  }
+  
+  .loading-text {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { border-width: 10px; }
+    50% { border-width: 20px; }
+  }
+  
