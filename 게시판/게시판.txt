@@ -1,0 +1,22 @@
+board table
+board_id pk
+board_title 
+board_writer (FK)
+board_date
+board_view
+board_content
+board_status
+board_comments_count
+board_last_modified
+board_like
+
+comment table
+comment_id pk int
+board_id fk
+comment_writer fk
+comment_content
+comment_like
+comment_bad
+comment_date
+comment_status
+comment_last_modified
