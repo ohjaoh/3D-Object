@@ -1,22 +1,40 @@
-board table
-board_id pk
-board_title 
-board_writer (FK)
-board_date
-board_view
-board_content
-board_status
-board_comments_count
-board_last_modified
-board_like
+-- Board Table: 각 게시물에 대한 정보를 저장하는 테이블
+CREATE TABLE board (
+    board_id INT PRIMARY KEY  auto_increment,                             -- 게시물의 고유 식별자
+    board_title VARCHAR(255) NOT NULL,                    -- 게시물의 제목
+    board_writer INT NOT NULL,                            -- 게시물을 작성한 사용자를 참조하는 외래 키
+    board_date DATETIME NOT NULL,                         -- 게시물이 생성된 날짜와 시간
+    board_view INT DEFAULT 0,                             -- 게시물이 조회된 횟수
+    board_content TEXT NOT NULL,                          -- 게시물의 내용
+    board_status VARCHAR(50) DEFAULT 'active',            -- 게시물의 상태 (예: 활성화, 삭제됨, 숨김)
+    board_comments_count INT DEFAULT 0,                   -- 게시물에 달린 댓글의 수
+    board_last_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 마지막 수정된 날짜와 시간
+    board_like INT DEFAULT 0                              -- 게시물이 받은 좋아요 수
+);
 
-comment table
-comment_id pk int
-board_id fk
-comment_writer fk
-comment_content
-comment_like
-comment_bad
-comment_date
-comment_status
-comment_last_modified
+-- Comment Table: 각 게시물에 대한 댓글 정보를 저장하는 테이블
+CREATE TABLE comment (
+    comment_id INT PRIMARY KEY  auto_increment,                           -- 댓글의 고유 식별자
+    board_id INT,                                         -- 댓글이 달린 게시물을 참조하는 외래 키
+    comment_writer INT NOT NULL,                          -- 댓글을 작성한 사용자를 참조하는 외래 키
+    comment_content TEXT NOT NULL,                        -- 댓글의 내용
+    comment_like INT DEFAULT 0,                           -- 댓글이 받은 좋아요 수
+    comment_bad INT DEFAULT 0,                            -- 댓글이 받은 싫어요 또는 신고 수
+    comment_date DATETIME NOT NULL,                       -- 댓글이 생성된 날짜와 시간
+    comment_status VARCHAR(50) DEFAULT 'active',          -- 댓글의 상태 (예: 활성화, 삭제됨, 숨김)
+    comment_last_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 마지막 수정된 날짜와 시간
+    FOREIGN KEY (board_id) REFERENCES board(board_id)     -- board 테이블을 참조하는 외래 키 제약
+);
+
+
+-- Attachment Table: 각 게시물에 첨부된 파일을 저장하는 테이블
+CREATE TABLE attachment (
+    attachment_id INT PRIMARY KEY  auto_increment,                         -- 첨부파일의 고유 식별자
+    board_id INT,                                          -- 첨부파일이 연결된 게시물을 참조하는 외래 키
+    file_name VARCHAR(255) NOT NULL,                       -- 첨부파일의 원본 파일명
+    file_data MEDIUMBLOB NOT NULL,                         -- 첨부파일의 데이터 (최대 16MB)
+    upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,        -- 첨부파일이 업로드된 날짜와 시간
+    file_size INT NOT NULL,                                -- 첨부파일의 크기 (바이트 단위)
+    file_type VARCHAR(50),                                 -- 첨부파일의 MIME 타입 (예: image/jpeg, application/pdf)
+    FOREIGN KEY (board_id) REFERENCES board(board_id)      -- board 테이블을 참조하는 외래 키 제약
+);

@@ -1,0 +1,11 @@
+-- Attachment Table: 각 게시물에 첨부된 파일을 저장하는 테이블
+CREATE TABLE attachment (
+    attachment_id INT PRIMARY KEY,                         -- 첨부파일의 고유 식별자
+    board_id INT,                                          -- 첨부파일이 연결된 게시물을 참조하는 외래 키
+    file_name VARCHAR(255) NOT NULL,                       -- 첨부파일의 원본 파일명
+    file_data MEDIUMBLOB NOT NULL,                         -- 첨부파일의 데이터 (최대 16MB)
+    upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,        -- 첨부파일이 업로드된 날짜와 시간
+    file_size INT NOT NULL,                                -- 첨부파일의 크기 (바이트 단위)
+    file_type VARCHAR(50),                                 -- 첨부파일의 MIME 타입 (예: image/jpeg, application/pdf)
+    FOREIGN KEY (board_id) REFERENCES board(board_id)      -- board 테이블을 참조하는 외래 키 제약
+);
